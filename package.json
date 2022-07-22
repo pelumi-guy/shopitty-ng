@@ -2,15 +2,18 @@
   "name": "mern-stack-ecommerce-site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT && nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION && nodemon backend/server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pelumi-guy/MERN-Stack-Ecommerce-Site.git"
   },
-  "author": "",
+  "author": "Pelumi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pelumi-guy/MERN-Stack-Ecommerce-Site/issues"
