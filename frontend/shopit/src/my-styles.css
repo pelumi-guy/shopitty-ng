@@ -1,0 +1,11 @@
+.for-cards {
+    width: 18rem;
+}
+
+.show-edge {
+    border: 1px solid dimgray;
+}
+
+.theme {
+    background-color: #febd69;
+}

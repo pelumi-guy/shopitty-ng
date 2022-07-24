@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link as button } from 'react-router-dom'
-import '../../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
