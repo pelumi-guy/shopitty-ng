@@ -1,7 +1,9 @@
 # MERN-Stack-Ecommerce-Site
 MERN Stack Full Ecommerce Site - Using  React, Redux, Node.js
 
-A binary tree is a tree data structure in software engineering in which each node has at most two children, which are referred to as >A recursive definition using just set theory notions is that a (non-empty) binary tree is a tuple (L, S, R), where L and R are binary>
+A binary tree is a tree data structure in software engineering in which each node has at most two children, which are referred to     as the **left child** and the **right child**.
+A recursive definition using just set theory notions is that a (non-empty) binary tree is a tuple (L, S, R), where L and R are bin    ary trees or an empty set and S is a singleton set containing the root.
+
 ## Learning Objectives
 
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
