@@ -1,13 +1,13 @@
 {
-	"itemsPrice" : 2.75,
+	"itemsPrice" : 26.99,
 	"taxPrice" : 0.14,
 	"shippingPrice" : 25,
-	"totalPrice" : 27.89,
+	"totalPrice" : 52.13,
 	"orderItems" : [
 		{
-			"product" : "5fbff4439d9ba8406833ea73",
-			"name" : "Kauffman Orchards Homegrown McIntosh Apples",
-			"price" : 2.75,
+			"product" : "63f991ee65c17a40bb6d1cb0",
+			"name" : "CHARMOUNT Full Motion TV Wall Mount Swivel",
+			"price" : 26.99,
 			"image" : "https://res.cloudinary.com/shopit/image/upload/v1606293152/products/i0k1wdwi5hrpmzwxvsds.jpg",
 			"quantity" : 1
 		}
