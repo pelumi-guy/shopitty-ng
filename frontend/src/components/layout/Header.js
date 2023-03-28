@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link as button } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Search from './Search';
 
 const Header = () => {
   return (
@@ -9,43 +10,26 @@ const Header = () => {
                 {/* --Shopit logo-- */}
                 <div className="col-12 col-md-3">
                     <div className="navbar-brand">
-                        {/* <Link to="/"> */}
+                        <Link to="/">
                             <img src="/images/shopit_logo.png" />
-                        {/* </Link> */}
+                        </Link>
                     </div>
                 </div>
 
                 {/* --Search bar-- */}
                 <div className="col-12 col-md-6 mt-2 mt-md-0">
                     {/* <Route render={({ history }) => <Search history={history} />} /> */}
+                    < Search />
 
-                    <form 
-                      // onSubmit={searchHandler} 
-                      >
-                      <div className="input-group">
-                        <input
-                            type="text"
-                            id="search_field"
-                            className="form-control"
-                            placeholder="Enter Product Name ..."
-                            // onChange={(e) => setKeyword(e.target.value)}
-                        />
-                        <div className="input-group-append">
-                            <button id="search_btn" className="btn">
-                                <i className="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                      </div>
-                    </form>
                 </div>
 
-                
+
 
                 {/* --Cart Button-- */}
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                        
+
                         {/* --Login button-- */}
-                        <button to="/login" className="btn ml-4" id="login_btn">Login</button>
+                        <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>
 
                     {/* <Link to="/cart" style={{ textDecoration: 'none' }} > */}
                         <span id="cart" className="ml-3">Cart</span>

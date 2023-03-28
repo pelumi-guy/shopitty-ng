@@ -19,36 +19,43 @@ exports.newProducts = catchAsyncErrors(async (req, res, next) => {
 // Get all products => /api/v1/products?=keyword
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-    const resPerPage = 6;
+    // return next(new ErrorHandler('Alert with react alert', 400));
+
+    const resPerPage = 4;
     const productCount = await Product.countDocuments();
 
     const apiFeatures = new APIFeatures(Product, req.query)
                             .search()
                             .filter()
-                            .pagination(resPerPage)
 
-    const products = await apiFeatures.query;
+    let products = await apiFeatures.query;
+    let filteredProductsCount = products.length;
+
+    apiFeatures.pagination(resPerPage)
+    products = await apiFeatures.query.clone();
 
     res.status(200).json({
         success: true,
-        count: products.length,
+        // count: products.length,
+        resPerPage,
         productCount,
-        products
+        products,
+        filteredProductsCount
     })
 })
 
 // Get single product => /api/v1/products/:id
 exports.getSingleProduct = catchAsyncErrors(async(req, res, next) => {
 
-    const products = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id)
 
-    if (!products) {
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404));
     }
 
     res.status(200).json({
         success: true,
-        products
+        product
     })
 })
 
