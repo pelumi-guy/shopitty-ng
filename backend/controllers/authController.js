@@ -10,8 +10,10 @@ const cloudinary = require('cloudinary');
 // Register a User => /api/v1/register
 exports.registerUser = catchAsyncErrors( async (req, res, next) => {
 
+    // console.log('Request body in registerUser controller:', req.body);
+
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: 'avatars',
+        folder: 'shopit/avatars',
         width: 150,
         crop: "scale"
     })
@@ -85,7 +87,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // Create reset password url
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`
+    // const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`
 
     const message = `Your passsword reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested reset password this email, then ignore it.`
 
@@ -158,9 +161,26 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         // role: req.body.role
     }
 
-    // Update avatar (cloudinary functionality): TODO
+    // Update avatar
+    if (req.body.avatar !== '') {
+        const user = await User.findById(req.user.id);
 
-    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+        const image_id = user.avatar.public_id;
+        await cloudinary.v2.uploader.destroy(image_id, { invalidate: true });
+
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'shopit/avatars',
+            width: 150,
+            crop: "scale"
+        })
+
+        newUserData.avatar = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
+
+    await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -242,6 +262,8 @@ exports.deleteUser = catchAsyncErrors( async (req, res, next) => {
     }
 
     const email = user.email
+
+    await cloudinary.v2.uploader.destroy(user.avatar.public_id, { invalidate: true });
 
     user.delete();
 

@@ -1,7 +1,7 @@
 // import { combineReducers } from 'redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { productReducer, productDetailsReducer } from './reducers/productReducer';
-import { authReducer } from './reducers/authReducer';
+import { authReducer, userReducer, forgotPasswordReducer } from './reducers/authReducer';
 
 // const reducer = combineReducers({
 
@@ -17,7 +17,9 @@ const store = configureStore({
     reducer: {
         products: productReducer,
         productDetails: productDetailsReducer,
-        authentication: authReducer
+        authentication: authReducer,
+        user: userReducer,
+        forgotPassword: forgotPasswordReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
     preloadedState,

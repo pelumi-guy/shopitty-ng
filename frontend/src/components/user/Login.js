@@ -6,8 +6,10 @@ import MetaData from '../../Metadata'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, clearLoginErrors } from '../../actions/authActions'
+import { login, clearAuthErrors } from '../../actions/authActions'
 import { useNavigate } from 'react-router-dom'
+
+import { useFirstRender } from '../../utils/customHooks'
 
 const Login = () => {
 
@@ -17,6 +19,8 @@ const Login = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const firstRender = useFirstRender();
 
     const { isAuthenticated, error, loading } = useSelector(state => state.authentication);
 
@@ -29,8 +33,8 @@ const Login = () => {
         }
 
         if (error) {
-            alert.error(error);
-            dispatch(clearLoginErrors());
+            if (!firstRender) alert.error(error);
+            dispatch(clearAuthErrors());
         }
 
     }, [dispatch, alert, isAuthenticated, error])

@@ -4,8 +4,9 @@ const app = express();
 const errorMiddleware = require('./middlewares/errors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const cloudinary = require('cloudinary');
+// const cloudinary = require('cloudinary');
 const { logRequestBody } = require('./middlewares/myMiddlewares')
+const fileUpload = require('express-fileupload')
 
 app.use(express.json());
 
@@ -14,12 +15,11 @@ if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMEN
     app.use(morgan('tiny'));
 }
 
-// Cloudinary configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
+// cloudinary.config({
+//     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key: process.env.CLOUDINARY_API_KEY,
+//     api_secret: process.env.CLOUDINARY_API_SECRET
+// });
 
 // Import product routes
 const products = require('./routes/product');
@@ -33,14 +33,17 @@ const order = require('./routes/order');
 // Parse request cookies
 app.use(cookieParser());
 
-// Log request body before parsing with body-parser middleware
-app.use(logRequestBody);
+// // Log request body before parsing with body-parser middleware
+// app.use(logRequestBody);
 
 // Parse request body with body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Log request body after parsing with body-parser middleware
-app.use(logRequestBody);
+// // Log request body after parsing with body-parser middleware
+// app.use(logRequestBody);
+
+// Express fileUpload middleware
+app.use(fileUpload());
 
 // --- Application server routes (returns error if error occurs) ---
 

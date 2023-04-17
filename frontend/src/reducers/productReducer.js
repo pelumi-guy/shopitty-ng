@@ -40,6 +40,8 @@ export const {
 export const productReducer = productSlice.reducer;
 
 
+// --- Product Details Reducer ---
+
 const productDetailsInitialState = { product: {} };
 
 const productDetailsSlice = createSlice({
