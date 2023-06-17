@@ -2,15 +2,40 @@ const Product = require('../models/product');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
+const cloudinary = require('cloudinary');
 
-// Create new product => /api/v1/product/new
+// Create new product (Admin) => /api/v1/product/new
 exports.newProducts = catchAsyncErrors(async (req, res, next) => {
 
+    // console.log(req.files);
+
+    let images = [];
+    if (typeof req.body.images === 'string') {
+        images.push(req.body.images)
+    } else {
+        images = req.body.images;
+    }
+
+    let imageLinks  = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: 'shopit/products'
+        });
+
+        imageLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+        })
+    }
+
+    req.body.images = imageLinks;
     req.body.user = req.user.id;
 
     const product = await Product.create(req.body);
 
-    res.status(201).json({
+
+    res.status(200).json({
         success: true,
         product
     })
@@ -80,7 +105,7 @@ exports.updateProduct = catchAsyncErrors(async(req, res, next) => {
 
 // Delete product => /api/v1/admin/products/:id
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
-    id = req.params.id
+    const id = req.params.id
 
     if (id == "all"){
         count = await Product.deleteMany()
@@ -92,13 +117,18 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
             return
     }
 
-    let products = await Product.findById(id);
+    let product = await Product.findById(id);
 
-    if (!products) {
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404));
     }
 
-    products.deleteOne()
+    // Delete product images from cloudinary
+    for (let i = 0; i < product.images.length; i++) {
+        await cloudinary.v2.uploader.destroy(product.images[i].public_id, { invalidate: true });
+    }
+
+    await product.deleteOne()
 
     res.status(200).json({
         success: true,
@@ -174,11 +204,20 @@ exports.deleteReview = catchAsyncErrors( async (req, res, next) => {
 
     const product = await Product.findById(req.query.productId);
 
+    // console.log({  product })
     const reviews = product.reviews.filter(review => review._id.toString() !== req.params.id.toString());
+
+
 
     const numOfReviews = reviews.length;
 
-    const ratings = reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length;
+    let ratings = 0
+    if(numOfReviews) {
+        ratings = reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length;
+    }
+
+
+    console.log({ratings});
 
     await Product.findByIdAndUpdate(req.query.productId, {
         reviews,
@@ -194,3 +233,50 @@ exports.deleteReview = catchAsyncErrors( async (req, res, next) => {
         success: true,
     })
 })
+
+// Get all products (Admin) => /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async(req, res, next) => {
+
+    const product = await Product.find()
+
+    res.status(200).json({
+        success: true,
+        product
+    })
+})
+
+// // Create new product (Admin) => /api/v1/admin/product/new
+// exports.newProduct = catchAsyncErrors(async(req, res, next) => {
+
+//     let images = [];
+//     if (typeof req.body.images === 'string') {
+//         images.push(req.body.images)
+//     } else {
+//         images = req.body.images;
+//     }
+
+//     let imageLinks  = [];
+
+//     for (let i = 0; i < images.length; i++) {
+//         const result = await cloudinary.v2.uploader.upload(images[i], {
+//             folder: 'products'
+//         });
+
+//         imagesLinks.push({
+//             public_id: result.public_id,
+//             url: result.secure_url,
+//         })
+//     }
+
+//     req.body.images = imageLinks;
+//     req.body.user = req.user.id;
+
+
+//     const product = await Product.create(req.body);
+
+
+//     res.status(200).json({
+//         success: true,
+//         product
+//     })
+// })

@@ -69,6 +69,7 @@ nav {
 /* Home page */
 #products_heading {
   margin-top: 1.8rem;
+  font-family: calibri;
 }
 
 .card {
@@ -119,6 +120,7 @@ footer {
   color: grey;
   bottom: 0;
   width: 100%;
+  position: absolute sticky;
 }
 
 /* Ratings */
@@ -196,8 +198,8 @@ footer {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20%;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   padding-left: 0;
 }
 .loader:after {
@@ -218,6 +220,10 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.loader-no-margin {
+  margin-top: 0% !important;
 }
 
 /* Cart */

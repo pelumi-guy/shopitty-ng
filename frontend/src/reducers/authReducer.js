@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { objectMap } from "../utils/utilFunctions";
 
 const auth_request = (state, action) => {
   state.loading = true;
   state.isAuthenticated = false;
+  state.user = null;
 };
 
 const auth_success = (state, action) => {
@@ -18,7 +20,11 @@ const auth_fail = (state, action) => {
   state.error = action.payload;
 };
 
-const userInitialState = { user: {} };
+const userInitialState = {
+  user: {},
+  isAuthenticated: false,
+  loading: true
+};
 
 const authSlice = createSlice({
   name: "auth",
@@ -83,6 +89,8 @@ const authSlice = createSlice({
   },
 });
 
+const authTypes = objectMap(authSlice.actions, (action) => action.toString());
+
 export const {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -97,9 +105,10 @@ export const {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   CLEAR_AUTH_ERRORS,
-} = authSlice.actions;
+} = authTypes;
 
 export const authReducer = authSlice.reducer;
+
 
 // --- User Reducer ---
 
@@ -133,6 +142,14 @@ const userSlice = createSlice({
       user_request(state, action);
     },
 
+    UPDATE_USER_REQUEST(state, action) {
+      user_request(state, action);
+    },
+
+    DELETE_USER_REQUEST(state, action) {
+      user_request(state, action);
+    },
+
     UPDATE_PROFILE_SUCCESS(state, action) {
       user_suceess(state, action);
     },
@@ -141,11 +158,28 @@ const userSlice = createSlice({
       user_suceess(state, action);
     },
 
+    UPDATE_USER_SUCCESS(state, action) {
+      user_suceess(state, action);
+    },
+
+    DELETE_USER_SUCCESS(state, action) {
+      state.loading = false;
+      state.isDeleted = action.payload;
+    },
+
     UPDATE_PROFILE_FAIL(state, action) {
       user_fail(state, action);
     },
 
     UPDATE_PASSWORD_FAIL(state, action) {
+      user_fail(state, action);
+    },
+
+    UPDATE_USER_FAIL(state, action) {
+      user_fail(state, action);
+    },
+
+    DELETE_USER_FAIL(state, action) {
       user_fail(state, action);
     },
 
@@ -157,11 +191,21 @@ const userSlice = createSlice({
       user_reset(state, action);
     },
 
+    UPDATE_USER_RESET(state, action) {
+      user_reset(state, action);
+    },
+
+    DELETE_USER_RESET(state, action) {
+      state.isDeleted = false;
+    },
+
     CLEAR_USER_ERRORS(state, action) {
       state.error = null;
     },
   },
 });
+
+const userTypes = objectMap(userSlice.actions, (action) => action.toString());
 
 export const {
   UPDATE_PROFILE_REQUEST,
@@ -172,10 +216,19 @@ export const {
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
   UPDATE_PASSWORD_RESET,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
+  UPDATE_USER_RESET,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
+  DELETE_USER_RESET,
   CLEAR_USER_ERRORS,
-} = userSlice.actions;
+} = userTypes;
 
 export const userReducer = userSlice.reducer;
+
 
 // --- Forgot Password Reducer ---
 
@@ -228,6 +281,8 @@ const forgotPasswordSlice = createSlice({
   },
 });
 
+const forgotPasswordTypes = objectMap(forgotPasswordSlice.actions, (action) => action.toString());
+
 export const {
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
@@ -236,6 +291,80 @@ export const {
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAIL,
   CLEAR_PWD_ERRORS,
-} = forgotPasswordSlice.actions;
+} = forgotPasswordTypes;
 
 export const forgotPasswordReducer = forgotPasswordSlice.reducer;
+
+
+// --- All User Reducer ---
+const allUsersSlice = createSlice({
+  name: "allUsers",
+  initialState: { users: [] },
+  reducers: {
+    ALL_USERS_REQUEST(state, action) {
+      state.loading = true;
+    },
+
+    ALL_USERS_SUCCESS(state, action) {
+      state.loading = false;
+      state.users = action.payload;
+    },
+
+    ALL_USERS_FAIL(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    CLEAR_ALL_USERS_ERRORS(state, action) {
+      state.error = null;
+    },
+  },
+});
+
+const allUsersTypes = objectMap(allUsersSlice.actions, (action) => action.toString());
+
+export const {
+  ALL_USERS_REQUEST,
+  ALL_USERS_SUCCESS,
+  ALL_USERS_FAIL,
+  CLEAR_ALL_USERS_ERRORS,
+} = allUsersTypes;
+
+export const allUsersReducer = allUsersSlice.reducer;
+
+
+// --- User Details (Admins) ---
+const userDetailsSlice = createSlice({
+  name: "userDetails",
+  initialState: { user: {} },
+  reducers: {
+    USER_DETAILS_REQUEST(state, action) {
+      state.loading = true;
+    },
+
+    USER_DETAILS_SUCCESS(state, action) {
+      state.loading = false;
+      state.user = action.payload;
+    },
+
+    USER_DETAILS_FAIL(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    CLEAR_USER_DETAILS_ERRORS(state, action) {
+      state.error = null;
+    },
+  },
+});
+
+const userDetailsTypes = objectMap(userDetailsSlice.actions, (action) => action.toString());
+
+export const {
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
+  CLEAR_USER_DETAILS_ERRORS,
+} = userDetailsTypes;
+
+export const userDetailsReducer = userDetailsSlice.reducer;

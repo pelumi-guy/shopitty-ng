@@ -14,13 +14,16 @@ const {
     deleteProduct,
     createProductReview,
     getProductReviews,
-    deleteReview
+    deleteReview,
+    getAdminProducts,
 
 } = require('../controllers/productController.js');
 
 router.route('/products').get(getProducts);
 
 router.route('/products/:id').get(getSingleProduct);
+
+router.route('/admin/products').get(getAdminProducts);
 
 router.route('/admin/product/new').post(isAuthenticatedUser, authorization('admin'), newProducts);
 

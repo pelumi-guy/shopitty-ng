@@ -8,6 +8,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "countries-list": "^2.6.1",
+    "mdbreact": "^5.2.0",
     "rc-slider": "^10.1.1",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
@@ -25,6 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "ssl_start": "HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,5 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:4000/api/v1"
+  "proxy": "https://127.0.0.1:4000"
 }

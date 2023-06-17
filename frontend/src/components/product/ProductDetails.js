@@ -4,28 +4,28 @@ import { Carousel } from 'react-bootstrap'
 import Loader from '../layout/Loader'
 import MetaData from '../../Metadata'
 import Counter from '../layout/Counter'
-// import ListReviews from '../review/ListReviews'
+import ListReviews from '../review/ListReviews'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductDetails, clearDetailsErrors } from '../../actions/productActions'
-// import { addItemToCart } from '../../actions/cartActions'
-// import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import { getProductDetails, clearDetailsErrors, newReview } from '../../actions/productActions'
+import { addItemToCart } from '../../actions/cartActions'
+import { NEW_REVIEW_RESET } from '../../reducers/productReducer'
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = () => {
 
     const [quantity, setQuantity] = useState(1)
-    // const [rating, setRating] = useState(0);
-    // const [comment, setComment] = useState('');
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
     const alert = useAlert();
     const params = useParams();
 
     const { loading, error, product } = useSelector(state => state.productDetails)
-    // const { user } = useSelector(state => state.auth)
-    // const { error: reviewError, success } = useSelector(state => state.newReview)
+    const { user } = useSelector(state => state.authentication)
+    const { error: reviewError, success } = useSelector(state => state.newReview)
 
     useEffect(() => {
         dispatch(getProductDetails(params.id))
@@ -35,22 +35,22 @@ const ProductDetails = ({ match }) => {
             dispatch(clearDetailsErrors())
         }
 
-        // if (reviewError) {
-        //     alert.error(reviewError);
-        //     dispatch(clearDetailsErrors())
-        // }
+        if (reviewError) {
+            alert.error(reviewError);
+            dispatch(clearDetailsErrors())
+        }
 
-        // if (success) {
-        //     alert.success('Reivew posted successfully')
-        //     dispatch({ type: NEW_REVIEW_RESET })
-        // }
+        if (success) {
+            alert.success('Reivew posted successfully')
+            dispatch({ type: NEW_REVIEW_RESET })
+        }
 
-    }, [dispatch, alert, error, params.id])
+    }, [dispatch, alert, error, params.id, success])
 
-    // const addToCart = () => {
-    //     dispatch(addItemToCart(params.id, quantity));
-    //     alert.success('Item Added to Cart')
-    // }
+    const addToCart = () => {
+        dispatch(addItemToCart(params.id, quantity));
+        alert.success('Item Added to Cart')
+    }
 
     const increaseQty = () => {
         const count = document.querySelector('.count')
@@ -72,53 +72,53 @@ const ProductDetails = ({ match }) => {
 
     }
 
-    // function setUserRatings() {
-    //     const stars = document.querySelectorAll('.star');
+    function setUserRatings() {
+        const stars = document.querySelectorAll('.star');
 
-    //     stars.forEach((star, index) => {
-    //         star.starValue = index + 1;
+        stars.forEach((star, index) => {
+            star.starValue = index + 1;
 
-    //         ['click', 'mouseover', 'mouseout'].forEach(function (e) {
-    //             star.addEventListener(e, showRatings);
-    //         })
-    //     })
+            ['click', 'mouseover', 'mouseout'].forEach(function (e) {
+                star.addEventListener(e, showRatings);
+            })
+        })
 
-    //     function showRatings(e) {
-    //         stars.forEach((star, index) => {
-    //             if (e.type === 'click') {
-    //                 if (index < this.starValue) {
-    //                     star.classList.add('orange');
+        function showRatings(e) {
+            stars.forEach((star, index) => {
+                if (e.type === 'click') {
+                    if (index < this.starValue) {
+                        star.classList.add('orange');
 
-    //                     setRating(this.starValue)
-    //                 } else {
-    //                     star.classList.remove('orange')
-    //                 }
-    //             }
+                        setRating(this.starValue)
+                    } else {
+                        star.classList.remove('orange')
+                    }
+                }
 
-    //             if (e.type === 'mouseover') {
-    //                 if (index < this.starValue) {
-    //                     star.classList.add('yellow');
-    //                 } else {
-    //                     star.classList.remove('yellow')
-    //                 }
-    //             }
+                if (e.type === 'mouseover') {
+                    if (index < this.starValue) {
+                        star.classList.add('yellow');
+                    } else {
+                        star.classList.remove('yellow')
+                    }
+                }
 
-    //             if (e.type === 'mouseout') {
-    //                 star.classList.remove('yellow')
-    //             }
-    //         })
-    //     }
-    // }
+                if (e.type === 'mouseout') {
+                    star.classList.remove('yellow')
+                }
+            })
+        }
+    }
 
-    // const reviewHandler = () => {
-    //     const formData = new FormData();
+    const reviewHandler = () => {
+        const formData = new FormData();
 
-    //     formData.set('rating', rating);
-    //     formData.set('comment', comment);
-    //     formData.set('productId', params.id);
+        formData.set('rating', rating);
+        formData.set('comment', comment);
+        formData.set('productId', params.id);
 
-    //     dispatch(newReview(formData));
-    // }
+        dispatch(newReview(formData));
+    }
 
     return (
         <Fragment>
@@ -169,7 +169,7 @@ const ProductDetails = ({ match }) => {
                             < Counter val={quantity} incrementer={increaseQty} decrementer={decreaseQty}/>
 
                             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0}
-                            // onClick={addToCart}
+                            onClick={addToCart}
                             >Add to Cart</button>
 
                             <hr />
@@ -183,18 +183,18 @@ const ProductDetails = ({ match }) => {
                             <hr />
                             <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
 
-                            <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal"
-                            // onClick={setUserRatings}
+                            {/* <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal"
+                            onClick={setUserRatings}
                             >
                                 Submit Your Review
-                            </button>
+                            </button> */}
 
-                            {/* {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
+                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
                                 Submit Your Review
                             </button>
                                 :
                                 <div className="alert alert-danger mt-5" type='alert'>Login to post your review.</div>
-                            } */}
+                            }
 
 
                             <div className="row mt-2 mb-5">
@@ -222,14 +222,15 @@ const ProductDetails = ({ match }) => {
                                                     <textarea
                                                         name="review"
                                                         id="review" className="form-control mt-3"
-                                                        // value={comment}
-                                                        // onChange={(e) => setComment(e.target.value)}
+                                                        value={comment}
+                                                        onChange={(e) => setComment(e.target.value)}
                                                     >
 
                                                     </textarea>
 
-                                                    <button className="btn my-3 float-right review-btn px-4 text-white"
-                                                    // onClick={reviewHandler}
+                                                    <button className="btn my-3 float-right px-4 text-white"
+                                                    id = "review_btn"
+                                                    onClick={reviewHandler}
                                                     data-dismiss="modal" aria-label="Close">Submit</button>
                                                 </div>
                                             </div>
@@ -241,9 +242,9 @@ const ProductDetails = ({ match }) => {
                         </div>
                     </div>
 
-                    {/* {product.reviews && product.reviews.length > 0 && (
+                    {product.reviews && product.reviews.length > 0 && (
                         <ListReviews reviews={product.reviews} />
-                    )} */}
+                    )}
 
                 </Fragment>
             )}

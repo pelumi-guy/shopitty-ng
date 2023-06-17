@@ -8,10 +8,10 @@ import Product from "./product/Product";
 import Loader from "./layout/Loader";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import Counter from "./layout/Counter";
+// import Counter from "./layout/Counter";
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
 // const RangeSlider = createSliderWithTooltip(Slider.Range);
@@ -20,6 +20,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const params = useParams();
+  const location = useLocation();
 
   const {
     loading,
@@ -68,23 +69,24 @@ const Home = () => {
   let count = productCount;
   if (keyword) count = filteredProductsCount;
 
-  const increaseprice = () => {
-    const count = document.querySelector(".count");
 
-    // if (count.valueAsNumber >= product.stock) return;
+  // const increaseprice = () => {
+  //   const count = document.querySelector(".count");
 
-    const newPrice = count.valueAsNumber + 1;
-    setPrice([newPrice, price[1]]);
-  };
+  //   // if (count.valueAsNumber >= product.stock) return;
 
-  const decreaseprice = () => {
-    const count = document.querySelector(".count");
+  //   const newPrice = count.valueAsNumber + 1;
+  //   setPrice([newPrice, price[1]]);
+  // };
 
-    // if (count.valueAsNumber <= 1) return;
+  // const decreaseprice = () => {
+  //   const count = document.querySelector(".count");
 
-    const newPrice = count.valueAsNumber - 1;
-    setPrice([newPrice, price[1]]);
-  };
+  //   // if (count.valueAsNumber <= 1) return;
+
+  //   const newPrice = count.valueAsNumber - 1;
+  //   setPrice([newPrice, price[1]]);
+  // };
 
   return (
     <Fragment>
@@ -178,9 +180,14 @@ const Home = () => {
                   </div>
                 </Fragment>
               ) : (
-                products.map((product) => (
+              //   products && products.map((product) => (
+              //   <Product product={product} key={product._id} col={3} />
+              // ))
+              <Fragment>
+                {products && products.map((product) => (
                   <Product product={product} key={product._id} col={3} />
-                ))
+                ))}
+              </Fragment>
               )}
             </div>
           </section>

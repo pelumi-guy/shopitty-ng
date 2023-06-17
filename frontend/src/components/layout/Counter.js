@@ -12,6 +12,7 @@ const Counter = ({ val, incrementer, decrementer }) => {
           type="number"
           className="form-control count d-inline"
           value={val}
+          readOnly
         />
 
         <span className="btn btn-primary plus" onClick={incrementer}>

@@ -9,3 +9,7 @@
 .theme {
     background-color: #febd69;
 }
+
+.clickable {
+    cursor: pointer;
+}

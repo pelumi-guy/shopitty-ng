@@ -1,0 +1,24 @@
+<ref *1> Promise [Object] {
+  _bitField: 0,
+  _fulfillmentHandler0: undefined,
+  _rejectionHandler0: undefined,
+  _promise0: undefined,
+  _receiver0: undefined,
+  _cancellationParent: Promise [Object] {
+    _bitField: 1,
+    _fulfillmentHandler0: [Function: runBound],
+    _rejectionHandler0: undefined,
+    _promise0: [Circular *1],
+    _receiver0: undefined,
+    _onCancelField: [Function (anonymous)],
+    _branchesRemainingToCancel: 1
+  }
+}
+> {
+  status: true,
+  message: 'Authorization URL created',
+  data: {
+    authorization_url: 'https://checkout.paystack.com/7dhccjnggzbkgw5',
+    access_code: '7dhccjnggzbkgw5',
+    reference: 'pym8o38k2e'
+  }

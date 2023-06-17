@@ -5,8 +5,9 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { publicRoutes, protectedRoutes } from "./index";
+import { publicRoutes, protectedRoutes, dashboardRoutes } from "./index";
 import layout from "../components/layout";
+import DashboardLayout from "../components/layout/DashboardLayout";
 import ProtectedRoute from "../components/route/ProtectedRoute";
 
 const childRoutes = (Layout, routes) =>
@@ -79,6 +80,7 @@ const AppRoutes = () => {
       <Routes>
         {childRoutes(layout, publicRoutes)}
         {protectedChildRoutes(layout, protectedRoutes)}
+        {protectedChildRoutes(DashboardLayout, dashboardRoutes)}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

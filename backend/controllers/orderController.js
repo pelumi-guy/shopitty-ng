@@ -72,7 +72,7 @@ exports.allOrders = catchAsyncErrors( async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            'Total price of orders': totalAmount,
+            totalAmount,
             orders
 
         })

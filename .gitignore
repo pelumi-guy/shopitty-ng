@@ -1,8 +1,11 @@
-#ignore .env files containing environment variables
+# ignore .env files containing environment variables
 *.env
 
 # dependencies
 node_modules
 
-#Backup files
+# Backup files
 .bak
+
+# ssl certificate
+localhost*

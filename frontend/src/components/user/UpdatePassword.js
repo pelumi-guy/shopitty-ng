@@ -33,7 +33,7 @@ const UpdatePassword = () => {
             navigate('/me');
 
             dispatch({
-                type: UPDATE_PASSWORD_RESET.toString()
+                type: UPDATE_PASSWORD_RESET
             })
         }
 

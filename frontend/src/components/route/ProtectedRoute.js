@@ -11,13 +11,15 @@ const ProtectedRoute = ({ children, isAdmin = false }) => {
   const { isAuthenticated, loading, user } = useSelector(state => state.authentication);
 
   useEffect(() => {
-    if (!user){
+    console.log({isAuthenticated, loading});
+
+    if (!user) {
         dispatch(loadUser());
     }
   }, [isAuthenticated, loading]);
 
   if (loading) {
-    return (Loader)
+    return <Loader />
   };
 
   if (!loading && isAuthenticated) {
@@ -26,7 +28,7 @@ const ProtectedRoute = ({ children, isAdmin = false }) => {
     }
     return children;
   } else {
-    return <Navigate to='/login/redirect' />
+    return <Navigate to="/login?redirect=" />
   }
 }
 

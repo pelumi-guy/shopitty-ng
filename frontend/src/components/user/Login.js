@@ -1,13 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import Loader from '../layout/Loader'
 import MetaData from '../../Metadata'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, clearAuthErrors } from '../../actions/authActions'
-import { useNavigate } from 'react-router-dom'
+import { login, clearAuthErrors, loadUser } from '../../actions/authActions'
 
 import { useFirstRender } from '../../utils/customHooks'
 
@@ -19,21 +18,43 @@ const Login = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const firstRender = useFirstRender();
 
     const { isAuthenticated, error, loading } = useSelector(state => state.authentication);
 
-    // const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect = location.search ? `/${location.search.split('=')[1]}` : '/'
 
     useEffect(() => {
+
+        if (location.search) {
+            if (firstRender) {
+                dispatch(loadUser());
+            }
+
+            if (error) {
+                // if (!firstRender) alert.error(error);
+                alert.error(error);
+                dispatch(clearAuthErrors());
+            }
+
+            if (redirect) {
+                if (isAuthenticated) {
+                    navigate(redirect)
+                }
+            }
+
+            return
+        }
 
         if (isAuthenticated) {
             navigate('/')
         }
 
         if (error) {
-            if (!firstRender) alert.error(error);
+            // if (!firstRender) alert.error(error);
+            alert.error(error);
             dispatch(clearAuthErrors());
         }
 

@@ -263,6 +263,7 @@ exports.deleteUser = catchAsyncErrors( async (req, res, next) => {
 
     const email = user.email
 
+  =
     await cloudinary.v2.uploader.destroy(user.avatar.public_id, { invalidate: true });
 
     user.delete();

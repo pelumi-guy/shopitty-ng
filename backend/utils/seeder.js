@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Product = require('../models/product.js');
 
-const connectDatabase = require('../config/database');
+const { connectDatabase } = require('../config/database.js');
 
 // setup environment config
 dotenv.config({ path: "backend/config/config.env" })
@@ -12,13 +12,13 @@ dotenv.config({ path: "backend/config/config.env" })
 // connect database
 connectDatabase();
 
-// seedproducts 
+// seedproducts
 const seedProducts = async () => {
     try {
         await Product.deleteMany();
         console.log("Products are deleted");
 
-        await Product.insertMany(products);
+        await Product.insertMany(products, {ordered: false});
         console.log("All products have been added");
 
         process.exit();

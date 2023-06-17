@@ -43,7 +43,7 @@ const UpdateProfile = () => {
             navigate('/me');
 
             dispatch({
-                type: UPDATE_PROFILE_RESET.toString()
+                type: UPDATE_PROFILE_RESET
             });
         }
 
