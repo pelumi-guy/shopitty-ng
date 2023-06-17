@@ -30,7 +30,7 @@ const Payment = () => {
       if (location.search) {
         var ref = location.search.split("=")[1].split("&")[0];
       }
-      const verfication = await axios.get(`/payment/verify/${ref}`);
+      const verfication = await axios.get(`/api/v1/payment/verify/${ref}`);
 
       // console.log("verification: ", verfication);
       if (!verfication.data.success) {
