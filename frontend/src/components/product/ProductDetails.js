@@ -130,8 +130,8 @@ const ProductDetails = () => {
                             <Carousel pause='hover'>
                                 {product.images && product.images.map(image => (
                                     <Carousel.Item key={image.public_id}>
-                                        {/* <img className="d-block w-100" src={image.url} alt={product.title} /> */}
-                                        <img className="d-block w-100" src="/images/sandisk-memcard.jpg" alt={product.title} />
+                                        <img className="d-block w-100" src={image.url} alt={product.title} />
+                                        {/* <img className="d-block w-100" src="/images/sandisk-memcard.jpg" alt={product.title} /> */}
                                     </Carousel.Item>
                                 ))}
                             </Carousel>
@@ -150,7 +150,7 @@ const ProductDetails = () => {
 
                             <hr />
 
-                            <p id="product_price">${product.price}</p>
+                            <p id="product_price">₦{product.price && product.price.toLocaleString()}</p>
                             {/* <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus"
                                 // onClick={decreaseQty}

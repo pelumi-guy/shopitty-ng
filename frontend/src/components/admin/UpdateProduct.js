@@ -94,12 +94,33 @@ const UpdateProduct = () => {
     formData.set("category", category);
     formData.set("stock", stock);
     formData.set("seller", seller);
+    formData.set("images", []);
 
     images.forEach((image) => {
       formData.append("images", image);
     });
 
     dispatch(updateProduct(product._id, formData));
+  };
+
+  const submitWithJson = (e) => {
+    e.preventDefault();
+
+    const productData = {};
+
+    productData.name = name;
+    productData.price = price;
+    productData.description = description;
+    productData.category = category;
+    productData.stock = stock;
+    productData.seller = seller;
+    productData.images = [];
+
+    images.forEach((image) => {
+      productData.images.push(image);
+    });
+
+    dispatch(updateProduct(product._id, JSON.stringify(productData)));
   };
 
   const onChange = (e) => {
@@ -131,7 +152,7 @@ const UpdateProduct = () => {
         <div className="wrapper my-5">
           <form
             className="shadow-lg"
-            onSubmit={submitHandler}
+            onSubmit={submitWithJson}
             encType="multipart/form-data"
           >
             <h1 className="mb-4">Update Product</h1>

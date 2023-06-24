@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: 'Amazon Ember';
+  font-family: "Amazon Ember", Calibri, Arial !important;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -27,12 +27,13 @@ body {
 }
 
 nav {
-  background-color: #232f3e;
+  background-color: #3a3723;
   padding: 1rem 1rem;
 }
 
 #search_btn {
-  background-color: #febd69;
+  /* background-color: #febd69; */
+  background-color: #7201cc;
 }
 
 .input-group {
@@ -47,9 +48,11 @@ nav {
 
 #login_btn,
 #view_btn {
-  background-color: #febd69;
+  /* background-color: #febd69; */
+  background-color: #7201cc;
   padding: 0.4rem 1.8rem;
   font-family: calibri;
+  color: white;
 }
 
 #cart {
@@ -58,10 +61,11 @@ nav {
 }
 
 #cart_count {
-  background-color: #febd69;
+  /* background-color: #febd69; */
+  background-color: #7201cc;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
-  color: black;
+  color: white;
   font-weight: bold;
   font-size: 0.9rem;
 }
@@ -81,7 +85,7 @@ nav {
 }
 
 .card-title a:hover {
-  color: #fa9c23;
+  color: #7201cc;
   text-decoration: none;
 }
 
@@ -94,7 +98,7 @@ nav {
 }
 
 #view_btn {
-  background-color: #fa9c23;
+  background-color: #7201cc;
   color: white;
 }
 
@@ -105,7 +109,7 @@ nav {
 
 .ratings {
   font-size: 1.2rem;
-  color: #fdcc0d;
+  color: #b67dc6;
 }
 
 #no_of_reviews {
@@ -129,7 +133,7 @@ footer {
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
-  color: #fdcc0d;
+  color: #b67dc6;
 }
 
 .rating-outer::before {
@@ -147,7 +151,7 @@ footer {
 
 .rating-inner::before {
   content: '\f005 \f005 \f005 \f005 \f005';
-  color: #f8ce0b;
+  color: #dc76f1;
 }
 
 /* Product Details Page */
@@ -164,7 +168,7 @@ footer {
 #cart_btn,
 #review_btn {
   border-radius: 2rem;
-  background-color: #fa9c23;
+  background-color: #7201cc;
   border: none;
   padding: 0.5rem 2rem;
 }
@@ -209,8 +213,8 @@ footer {
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #fa9c23;
-  border-color: #fa9c23 transparent;
+  border: 6px solid #7201cc;
+  border-color: #7201cc transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
@@ -246,22 +250,22 @@ footer {
 }
 
 #card_item_price {
-  color: #febd69;
+  color: #7201cc;
   font-weight: bold;
   font-size: 1.4rem;
 }
 
 #checkout_btn,
 .review-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
   margin-top: 2rem;
   border-radius: 5rem;
 }
 
 #view_order_details {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
 }
 
 #order_summary {
@@ -313,8 +317,8 @@ footer {
 }
 
 .wrapper form .btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
   color: white;
   margin-top: 2.5rem;
 }
@@ -393,7 +397,7 @@ footer {
 }
 
 .active-step {
-  background: #fa9c23;
+  background: #7201cc;
   color: #fff;
 }
 
@@ -401,7 +405,7 @@ footer {
   float: left;
   width: 0;
   border-top: 20px solid transparent;
-  border-left: 15px solid #fa9c23;
+  border-left: 15px solid #7201cc;
   border-bottom: 20px solid transparent;
   margin-left: -1px;
 }
@@ -409,9 +413,9 @@ footer {
 .triangle2-active {
   width: 0;
   float: left;
-  border-top: 20px solid #fa9c23;
+  border-top: 20px solid #7201cc;
   border-left: 15px solid #fff;
-  border-bottom: 20px solid #fa9c23;
+  border-bottom: 20px solid #7201cc;
   margin-right: -1px;
 }
 
@@ -451,8 +455,8 @@ footer {
 }
 
 #edit_profile {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
 }
 
 /* Confirm Order */
@@ -463,8 +467,8 @@ footer {
 }
 
 .update-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
   color: white;
 }
 
@@ -474,16 +478,16 @@ footer {
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #7201cc;
+  border-color: #7201cc;
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #7201cc;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: #7201cc;
 }
 
 /* Admin Sidebar */
@@ -609,11 +613,11 @@ ul.CTAs a {
 }
 
 .orange {
-  color: #fa9c23;
+  color: #7201cc;
 }
 
 .yellow {
-  color: #fdcc0d;
+  color: #b67dc6;
 }
 
 .review_user {

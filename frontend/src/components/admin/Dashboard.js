@@ -47,7 +47,7 @@ const Dashboard = () => {
                     Total Amount
                     <br />
                     <b>
-                      ${totalAmount && totalAmount.toFixed(2)}
+                    ₦{totalAmount && totalAmount.toLocaleString()}
                     </b>
                   </div>
                 </div>

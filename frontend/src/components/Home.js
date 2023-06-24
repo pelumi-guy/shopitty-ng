@@ -61,6 +61,8 @@ const Home = () => {
 
     dispatch(getProducts(currentPage, keyword, price, category, rating));
 
+    // console.log({ products });
+
     if (count <= resPerPage) setCurrentPage(1);
   }, [dispatch, alert, error, currentPage, keyword, price, category, rating]);
 
@@ -113,8 +115,8 @@ const Home = () => {
                         <Slider
                           range
                           marks={{
-                            1: "$1",
-                            1000: "$1000",
+                            1: "₦1",
+                            1000: "₦1000",
                           }}
                           min={1}
                           max={1000}

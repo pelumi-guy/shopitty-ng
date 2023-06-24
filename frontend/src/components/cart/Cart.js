@@ -39,6 +39,16 @@ const Cart = () => {
       navigate('/login?redirect=shipping')
   }
 
+  const sumTotal = (cartItems) =>{
+    let total = cartItems.reduce(
+      (acc, item) => acc + item.quantity * item.price,
+      0
+    )
+    .toFixed(2)
+    return total.toLocaleString()
+  }
+
+
   return (
     <Fragment>
       <MetaData title={"Your Cart"} />
@@ -74,7 +84,7 @@ const Cart = () => {
                       </div>
 
                       <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                        <p id="card_item_price">${item.price}</p>
+                        <p id="card_item_price">₦{item.price.toLocaleString()}</p>
                       </div>
 
                       <div className="col-4 col-lg-3 mt-4 mt-lg-0">
@@ -125,13 +135,13 @@ const Cart = () => {
                 <p>
                   Est. total:{" "}
                   <span className="order-summary-values">
-                    $
-                    {cartItems
+                  ₦
+                    {Number(cartItems
                       .reduce(
                         (acc, item) => acc + item.quantity * item.price,
                         0
                       )
-                      .toFixed(2)}
+                      .toFixed(2)).toLocaleString()}
                   </span>
                 </p>
 

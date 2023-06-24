@@ -61,7 +61,7 @@ export const getProducts = (currentPage, keyword = '', price = 0, category, rati
 
         const { data } = await axios.get(api_prefix+link);
 
-        // console.log('data recieved: ', data)
+        console.log({data});
 
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,

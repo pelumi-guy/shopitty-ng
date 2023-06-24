@@ -31,7 +31,7 @@ const ConfirmOrder = () => {
   );
   const shippingPrice = itemsPrice > 200 ? 0 : 25;
   const taxPrice = Number((0.05 * itemsPrice).toFixed(2));
-  const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2);
+  const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   const processToPayment = async () => {
     setLoadingPayment(true);
@@ -118,8 +118,8 @@ const ConfirmOrder = () => {
 
                   <div className="col-4 col-lg-4 mt-4 mt-lg-0">
                     <p>
-                      {item.quantity} x ${item.price} ={" "}
-                      <b>${(item.quantity * item.price).toFixed(2)}</b>
+                      {item.quantity} x ₦{item.price.toLocaleString()} ={" "}
+                      <b>{(item.quantity * item.price).toLocaleString()}</b>
                     </p>
                   </div>
                 </div>
@@ -135,20 +135,20 @@ const ConfirmOrder = () => {
             <hr />
             <p>
               Subtotal:{" "}
-              <span className="order-summary-values">${itemsPrice}</span>
+              <span className="order-summary-values">₦{itemsPrice.toLocaleString()}</span>
             </p>
             <p>
               Shipping:{" "}
-              <span className="order-summary-values">${shippingPrice}</span>
+              <span className="order-summary-values">₦{shippingPrice.toLocaleString()}</span>
             </p>
             <p>
-              Tax: <span className="order-summary-values">${taxPrice}</span>
+              Tax: <span className="order-summary-values">₦{taxPrice.toLocaleString()}</span>
             </p>
 
             <hr />
 
             <p>
-              Total: <span className="order-summary-values">${totalPrice}</span>
+              Total: <span className="order-summary-values">₦{totalPrice.toLocaleString()}</span>
             </p>
 
             <hr />

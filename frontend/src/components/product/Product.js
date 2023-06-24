@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom'
 
 
 const Product = ({ product, col }) => {
+
+    // useEffect(() => {console.log({product})}, []);
   return (
     //   <div className="card col-3 my-3 mx-0">
     //   <img
@@ -26,8 +28,8 @@ const Product = ({ product, col }) => {
             <div className="card p-3 rounded">
                 <img
                     className="card-img-top mx-auto"
-                    // src={product.images[0].url}
-                    src="/images/sandisk-memcard.jpg"
+                    src={product.images[0].url}
+                    // src="/images/sandisk-memcard.jpg"
                 />
                 <div className="card-body d-flex flex-column">
                     <h6 className="card-title">
@@ -39,7 +41,7 @@ const Product = ({ product, col }) => {
                         </div>
                         <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
                     </div>
-                    <p className="card-text">${product.price}</p>
+                    <p className="card-text">₦{product.price.toLocaleString()}</p>
                     <Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>
