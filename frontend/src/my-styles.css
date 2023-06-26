@@ -1,0 +1,15 @@
+.for-cards {
+    width: 18rem;
+}
+
+.show-edge {
+    border: 1px solid red;
+}
+
+.theme {
+    background-color: #febd69;
+}
+
+.clickable {
+    cursor: pointer;
+}

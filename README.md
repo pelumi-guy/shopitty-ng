@@ -1,16 +1,50 @@
-# MERN-Stack-Ecommerce-Site
-MERN Stack Full Ecommerce Site - Using  React, Redux, Node.js
+# Shopitty NG
 
-A binary tree is a tree data structure in software engineering in which each node has at most two children, which are referred to     as the **left child** and the **right child**.  
-  
-A recursive definition using just set theory notions is that a (non-empty) binary tree is a tuple (L, S, R), where L and R are bin    ary trees or an empty set and S is a singleton set containing the root.
+Shopitty NG is a complete MERN (MongoDB, Express, React, Node.js) stack application that serves as a demonstration web app. It has been built to showcase my skills and capabilities as a Full Stack web developer and to enhance my portfolio. The application incorporates various technologies and services to create a seamless e-commerce experience.
 
-## Learning Objectives
+## Technologies Used
+- Node.js: The server-side JavaScript runtime environment.
+- React: A popular JavaScript library for building user interfaces.
+- Redux: A predictable state container for managing the application state.
+- Express: A flexible web application framework for Node.js.
+- MongoDB: A NoSQL database used for storing and managing data.
+- Cloudinary: A cloud-based media management platform for storing user avatars and product images.
+- Paystack: A payment gateway integration for handling secure and convenient payments during checkout.
 
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
-- What is a binary tree
-- What is the difference between a binary tree and a Binary Search Tree
-- What is the possible gain in terms of time complexity compared to linked lists
-- What are the depth, the height, the size of a binary tree
-- What are the different traversal methods to go through a binary tree
-- What is a complete, a full, a perfect, a balanced binary tree
+## Features
+- User Authentication: Shopitty NG allows users to create accounts, log in, and securely manage their profiles.
+- Product Catalog: The application provides a comprehensive catalog of products with details such as title, description, price, and images.
+- Shopping Cart: Users can add desired products to their shopping cart, review the cart contents, and proceed to checkout.
+- Secure Payment Processing: Paystack integration ensures secure and convenient payment processing during checkout.
+- User Avatars and Product Images: Cloudinary integration allows users to upload and store their avatars, as well as product images.
+
+## Installation and Setup
+- Clone the repository: git clone https://github.com/pelumi-guy/shopitty-ng.git
+- Navigate to the project directory: cd shopitty-ng
+- Install dependencies: npm install
+- Set up environment variables: Rename ```config.env.example``` file in backend/config to ```config.env``` and provide the necessary values.
+- Start the development server: npm start
+- Access the application in your browser at http://localhost:4000.
+
+## Usage
+- Explore the product catalog and select items of interest.
+- Add selected items to the shopping cart.
+- Review the cart contents and proceed to checkout.
+- Enter the required payment information using Paystack for secure payment processing.
+- Complete the purchase and receive a confirmation message.
+
+## Future Improvements
+- Enhance the user interface with additional styling and responsiveness.
+- Implement product suggestions and coupons to offer payment discount.
+- Integrate shipping and tracking services for efficient order management.
+- Provide order history and tracking features for users.
+
+## Contributing
+Contributions to Shopitty NG are welcome. If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request. Your contributions will be greatly appreciated.
+
+# License
+This project is licensed under the MIT License. You are free to use, modify, and distribute this application as per the terms of the license.
+
+Thank you for taking the time to explore Shopitty NG. If you have any questions or feedback, please feel free to reach out.
+
+**Happy shopping!**
