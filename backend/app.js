@@ -14,10 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
 // dev mode console feedback
-// if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
-//     app.use(morgan('tiny'));
-// }
-app.use(morgan('tiny'));
+if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
+    app.use(morgan('tiny'));
+}
+// app.use(morgan('tiny'));
+
 // cloudinary.config({
 //     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
 //     api_key: process.env.CLOUDINARY_API_KEY,

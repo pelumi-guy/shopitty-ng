@@ -1,7 +1,9 @@
 const dotenv = require('dotenv');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 
-dotenv.config({ path: "backend/config/config.env" })
+// dotenv.config({ path: "backend/config/config.env" })
+dotenv.config({ path: "config.env" })
+
 const paystack = require("paystack-api")(process.env.PAYSTACK_API_KEY);
 // console.log('api key: ', process.env.PAYSTACK_API_KEY);
 
