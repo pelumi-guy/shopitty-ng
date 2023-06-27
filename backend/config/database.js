@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+// const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
 let uri;
@@ -16,7 +16,7 @@ exports.connectDatabase = () => {
         },
     ).then(con => {
         console.log(`MongoDB Database connected with HOST: ${con.connection.host}`)
-    }).catch(() => console.log("Unable to connect to database..."));
+    }).catch((err) => console.log(`Unable to connect to database... Due to ${err}`));
 };
 
 

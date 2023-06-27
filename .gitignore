@@ -9,3 +9,6 @@ node_modules
 
 # ssl certificate
 localhost*
+
+# atlas mongodb credentials
+mongodb.txt

@@ -1,3 +1,0 @@
-shopit remote mongodb:
-username: pelumi
-mnJy35C5qBgUvf6s

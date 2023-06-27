@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children, isAdmin = false }) => {
   const { isAuthenticated, loading, user } = useSelector(state => state.authentication);
 
   useEffect(() => {
-    console.log({isAuthenticated, loading});
+    // console.log({isAuthenticated, loading});
 
     if (!user) {
         dispatch(loadUser());
