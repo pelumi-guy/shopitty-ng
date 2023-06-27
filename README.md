@@ -12,7 +12,7 @@ Shopitty NG is a complete MERN (MongoDB, Express, React, Node.js) stack applicat
 - Paystack: A payment gateway integration for handling secure and convenient payments during checkout.
 
 ## Features
-- User Authentication: Shopitty NG allows users to create accounts, log in, and securely manage their profiles.
+- User Authentication: Shopitty NG allows users to create accounts, log in, and securely manage their profiles using JWT for authentication.
 - Product Catalog: The application provides a comprehensive catalog of products with details such as title, description, price, and images.
 - Shopping Cart: Users can add desired products to their shopping cart, review the cart contents, and proceed to checkout.
 - Secure Payment Processing: Paystack integration ensures secure and convenient payment processing during checkout.
