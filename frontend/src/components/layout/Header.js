@@ -41,7 +41,7 @@ const Header = () => {
       </div>
 
       {/* --Search bar-- */}
-      <div className="col-12 col-md-6 mt-2 mt-md-0">
+      <div className="col-12 col-md-6 mt-2 mt-md-0 text-center">
         {/* <Route render={({ history }) => <Search history={history} />} /> */}
         <Search />
       </div>
