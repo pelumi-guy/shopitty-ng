@@ -230,6 +230,10 @@ footer {
   margin-top: 0% !important;
 }
 
+.scale-down {
+  scale: 50%;
+}
+
 /* Cart */
 
 .cart-item {

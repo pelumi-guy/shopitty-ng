@@ -70,9 +70,9 @@ const Header = () => {
 
           <div className="col-6">
             {
-            // loading ? (
-            //   <Loader className={'loader-no-margin'}/>
-            // ) : (
+            loading ? (
+              <Loader className={'loader-no-margin scale-down'}/>
+            ) : (
               <Fragment>
                 {user ? (
                   <div className="dropdown show d-inline">
@@ -133,7 +133,7 @@ const Header = () => {
                   )
                 )}
               </Fragment>
-            // )
+            )
             }
           </div>
         </div>
