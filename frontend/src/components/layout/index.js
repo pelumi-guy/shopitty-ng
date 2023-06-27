@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <Fragment>
       <Header />
-        <div className="container container-fluid vh-100">
+        <div className="container container-fluid">
           {children}
         </div>
       <Footer />
