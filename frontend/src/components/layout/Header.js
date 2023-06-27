@@ -27,7 +27,7 @@ const Header = () => {
   // }, [loading])
 
   return (
-    <nav className="navbar row">
+    <nav className="navbar row align-items-center">
       {/* --Shopit logo-- */}
       <div className="col-12 col-md-3 pl-3 text-center">
         <div className="navbar-brand">
@@ -41,7 +41,7 @@ const Header = () => {
       </div>
 
       {/* --Search bar-- */}
-      <div className="col-12 col-md-6 mt-2 mt-md-0 text-center">
+      <div className="col-12 col-md-6 mt-2 mt-md-0 text-center align-items-center px-0">
         {/* <Route render={({ history }) => <Search history={history} />} /> */}
         <Search />
       </div>
@@ -71,7 +71,7 @@ const Header = () => {
           <div className="col-6">
             {
             loading ? (
-              <Loader className={'loader-no-margin scale-down'} forHeader />
+              <Loader className={'loader-no-margin scale-down'} />
             ) : (
               <Fragment>
                 {user ? (
