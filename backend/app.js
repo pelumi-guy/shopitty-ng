@@ -13,11 +13,10 @@ const path = require('path');
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
-console.log({NODE_ENV: process.env.NODE_ENV})
 // dev mode console feedback
-if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
-    app.use(morgan('tiny'));
-}
+// if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
+//     app.use(morgan('tiny'));
+// }
 // app.use(morgan('tiny'));
 
 // cloudinary.config({
@@ -53,9 +52,9 @@ app.use(fileUpload());
 
 // --- Application server routes (returns error if error occurs) ---
 
-app.get('*', (req, res) => {
-    res.send("Server is reachable");
-})
+// app.get('*', (req, res) => {
+//     res.send("Server is reachable");
+// })
 
 // Product routes
 app.use('/api/v1', products);
@@ -72,13 +71,23 @@ app.use('/api/v1', payment);
 // Middleware to handle errors
 app.use(errorMiddleware);
 
-// Serve frontend static files
-if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
-    app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
-    })
-}
+// Serve frontend static files
+
+app.use(express.static('./build'));
+
+app.get('*', (req, res) => {
+    const cwd = process.cwd()
+    res.sendFile(cwd + '/build/index.html');
+})
+
+// if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
+//     app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
+//     })
+// }
+
 
 module.exports = app;
