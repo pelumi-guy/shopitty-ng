@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
-let uri;
-if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
-    uri = process.env.DB_LOCAL_URI;
-} else if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
-    uri = process.env.DB_URI;
-}
+const uri = process.env.DB_URI;
+// if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
+//     uri = process.env.DB_LOCAL_URI;
+// } else if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
+//     uri = process.env.DB_URI;
+// }
 
 exports.connectDatabase = () => {
     mongoose.connect(uri, {
