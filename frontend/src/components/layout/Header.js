@@ -71,7 +71,7 @@ const Header = () => {
           <div className="col-6">
             {
             loading ? (
-              <Loader className={'loader-no-margin scale-down'}/>
+              <Loader className={'loader-no-margin scale-down'} forHeader />
             ) : (
               <Fragment>
                 {user ? (
