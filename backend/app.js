@@ -13,6 +13,7 @@ const path = require('path');
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
+console.log({NODE_ENV: process.env.NODE_ENV})
 // dev mode console feedback
 if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
     app.use(morgan('tiny'));
@@ -51,6 +52,10 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 // --- Application server routes (returns error if error occurs) ---
+
+app.get('*', (req, res) => {
+    res.send("Server is reachable");
+})
 
 // Product routes
 app.use('/api/v1', products);

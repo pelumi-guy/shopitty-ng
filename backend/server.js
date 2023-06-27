@@ -7,6 +7,8 @@ const cloudinary = require('cloudinary');
 // const os = require('os');
 // const fs = require('fs');
 
+const port = process.env.PORT || 3001;
+
 //Handling uncaught exceptions
 process.on('uncaughtException', async err => {
     console.log(`ERROR: ${err.message}`);
@@ -38,9 +40,12 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const server = app.listen(process.env.PORT,  () => {
-    console.log(`Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`)
+const server = app.listen(port,  () => {
+    console.log(`Server started on PORT: ${port} in ${process.env.NODE_ENV} mode.`)
 })
+
+server.keepAliveTimeout = 120 * 1000;
+server.headersTimeout = 120 * 1000;
 
 // const server = https.createServer(parameters, app)
 
