@@ -9,7 +9,7 @@
     "dev": "SET NODE_ENV=DEVELOPMENT && nodemon backend/server",
     "static_dev": "SET NODE_ENV=DEVELOPMENT && node backend/server",
     "test_prod": "SET NODE_ENV=PRODUCTION && nodemon backend/server",
-    "prod": "SET NODE_ENV=PRODUCTION && node backend/server",
+    "prod": "node backend/server",
     "seeder": "node backend/utils/seeder",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend",
     "build": "npm --prefix ./frontend run build"
