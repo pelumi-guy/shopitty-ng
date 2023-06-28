@@ -87,7 +87,7 @@ const Register = () => {
       <MetaData title={"Register User"} />
 
       <div className="row wrapper">
-        <div className="col-10 col-lg-5 mt-1">
+        <div className="col-10 col-lg-5">
           <form
             className="shadow-lg"
             onSubmit={submitWithJson}
