@@ -54,7 +54,7 @@ const UpdatePassword = () => {
             <MetaData title={'Change Password'} />
 
             <div className="row wrapper">
-                <div className="col-10 col-lg-5 mt-3">
+                <div className="col-10 col-lg-5 mt-1">
                     <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mt-2 mb-5">Update Password</h1>
                         <div className="form-group">

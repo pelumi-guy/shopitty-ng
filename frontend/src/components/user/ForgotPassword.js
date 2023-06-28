@@ -42,7 +42,7 @@ const ForgotPassword = () => {
             <MetaData title={'Forgot Password'} />
 
             <div className="row wrapper">
-                <div className="col-10 col-lg-5 mt-3">
+                <div className="col-10 col-lg-5 mt-1">
                     <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-3">Forgot Password</h1>
                         <div className="form-group">

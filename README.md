@@ -22,7 +22,7 @@ Shopitty NG is a complete MERN (MongoDB, Express, React, Node.js) stack applicat
 - Clone the repository: git clone https://github.com/pelumi-guy/shopitty-ng.git
 - Navigate to the project directory: cd shopitty-ng
 - Install dependencies: npm install
-- Set up environment variables: Rename ```config.env.example``` file in backend/config to ```config.env``` and provide the necessary values.
+- Set up environment variables: Rename ```config.env.example``` to ```config.env``` and provide the necessary values.
 - Start the development server: npm start
 - Access the application in your browser at http://localhost:4000.
 
@@ -33,6 +33,9 @@ Shopitty NG is a complete MERN (MongoDB, Express, React, Node.js) stack applicat
 - Enter the required payment information using Paystack for secure payment processing.
 - Complete the purchase and receive a confirmation message.
 
+## Live Demo
+A live hosted demo of Shopitty NG can be accessed [here](). Feel free to explore the application and experience its features firsthand.
+
 ## Future Improvements
 - Enhance the user interface with additional styling and responsiveness.
 - Implement product suggestions and coupons to offer payment discount.
@@ -42,8 +45,9 @@ Shopitty NG is a complete MERN (MongoDB, Express, React, Node.js) stack applicat
 ## Contributing
 Contributions to Shopitty NG are welcome. If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request. Your contributions will be greatly appreciated.
 
-# License
+## License
 This project is licensed under the MIT License. You are free to use, modify, and distribute this application as per the terms of the license.
+
 
 Thank you for taking the time to explore Shopitty NG. If you have any questions or feedback, please feel free to reach out.
 
