@@ -22,9 +22,9 @@ const Header = () => {
     dispatch(logout());
   };
 
-  // useEffect(() => {
-  //   console.log({user});
-  // }, [loading])
+  useEffect(() => {
+    console.log({user});
+  }, [loading])
 
   return (
     <nav className="navbar row align-items-center">

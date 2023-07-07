@@ -123,10 +123,6 @@ exports.resetPassword = catchAsyncErrors( async (req, res, next) => {
         resetPasswordExpire: { $gt: Date.now() }
     })
 
-    if (!user) {
-        return next(new ErrorHandler('Password reset token is invalid or has expired', 400));
-    }
-
     if (req.body.password !== req.body.confirmPassword) {
         return next(new ErrorHandler('Password does not match', 400));
     }
@@ -145,6 +141,10 @@ exports.resetPassword = catchAsyncErrors( async (req, res, next) => {
 // Get currently logged in user details => /api/v1/me
 exports.getUserProfile = catchAsyncErrors( async (req, res, next) => {
     const user = await User.findById(req.user.id);
+
+    if (!user) {
+        return next(new ErrorHandler('You are not logged in', 401));
+    }
 
     res.status(200).json({
         success: true,

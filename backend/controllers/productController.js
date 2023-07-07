@@ -29,7 +29,7 @@ exports.newProducts = catchAsyncErrors(async (req, res, next) => {
         })
     }
 
-    console.log({imageLinks})
+    // console.log({imageLinks})
 
     req.body.images = imageLinks;
     req.body.user = req.user.id;
