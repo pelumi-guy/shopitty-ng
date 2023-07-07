@@ -4,7 +4,7 @@ const ErrorHandler = require('../utils/errorHandler');
 module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
 
-    console.log('env:', process.env.NODE_ENV);
+    // console.log('env:', process.env.NODE_ENV);
 
     if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
         res.status(err.statusCode).json({
@@ -17,8 +17,6 @@ module.exports = (err, req, res, next) => {
 
     if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION") ||
         process.env.NODE_ENV === "production") {
-
-        console.log("handling production error now...");
 
         let error = {...err};
 

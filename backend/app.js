@@ -73,21 +73,22 @@ app.use(errorMiddleware);
 
 
 // Serve frontend static files
+if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION") ||
+    process.env.NODE_ENV === "production") {
 
-app.use(express.static('./build'));
+    app.use(express.static('./build'));
 
-app.get('*', (req, res) => {
-    const cwd = process.cwd()
-    res.sendFile(cwd + '/build/index.html');
-})
+    app.get('*', (req, res) => {
+        const cwd = process.cwd()
+        res.sendFile(cwd + '/build/index.html');
+    })
 
-// if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
-//     app.use(express.static(path.join(__dirname, '../frontend/build')));
+    // app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-//     app.get('*', (req, res) => {
-//         res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
-//     })
-// }
+    // app.get('*', (req, res) => {
+    //     res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
+    // })
+}
 
 
 module.exports = app;
