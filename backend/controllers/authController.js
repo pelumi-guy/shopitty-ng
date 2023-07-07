@@ -140,16 +140,25 @@ exports.resetPassword = catchAsyncErrors( async (req, res, next) => {
 
 // Get currently logged in user details => /api/v1/me
 exports.getUserProfile = catchAsyncErrors( async (req, res, next) => {
-    const user = await User.findById(req.user.id);
 
-    if (!user) {
-        return next(new ErrorHandler('You are not logged in', 401));
+    console.log({user: req.user});
+
+    if (req.user) {
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return next(new ErrorHandler('You are not logged in', 401));
+        }
+
+        res.status(200).json({
+            success: true,
+            user
+        })
+    } else {
+        res.status(401).json({
+            success: false
+        })
     }
-
-    res.status(200).json({
-        success: true,
-        user
-    })
 })
 
 // Update user profile => /api/v1/me/update
