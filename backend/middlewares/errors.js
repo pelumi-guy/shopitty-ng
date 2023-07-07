@@ -4,6 +4,8 @@ const ErrorHandler = require('../utils/errorHandler');
 module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
 
+    console.log('env:', process.env.NODE_ENV);
+
     if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("DEVELOPMENT")) {
         res.status(err.statusCode).json({
             success: false,
