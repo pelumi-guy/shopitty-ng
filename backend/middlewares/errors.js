@@ -13,7 +13,10 @@ module.exports = (err, req, res, next) => {
         })
     }
 
-    if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION")) {
+    if (JSON.stringify((process.env.NODE_ENV).trim()) === JSON.stringify("PRODUCTION") ||
+        process.env.NODE_ENV === "PRODUCTION") {
+
+        console.log("handling production error now...");
 
         let error = {...err};
 
