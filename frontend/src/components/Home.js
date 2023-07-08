@@ -32,7 +32,7 @@ const Home = () => {
   } = useSelector((state) => state.products);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 1000]);
+  const [price, setPrice] = useState([0, 200000]);
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState(0);
 
@@ -116,12 +116,12 @@ const Home = () => {
                           range
                           marks={{
                             1: "₦1",
-                            1000: "₦1000",
+                            200000: "₦200,000",
                           }}
                           min={1}
-                          max={1000}
-                          defaultValue={[1, 1000]}
-                          tipFormatter={(value) => `$${value}`}
+                          max={200000}
+                          defaultValue={[1, 200000]}
+                          tipFormatter={(value) => `${value}`}
                           tipProps={{
                             placement: "top",
                             visible: false,

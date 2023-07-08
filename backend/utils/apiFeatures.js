@@ -1,3 +1,5 @@
+const objectMap = require('./objectMap');
+
 class APIFeatures {
     constructor (query, queryStr) {
         this.query = query;
@@ -18,7 +20,7 @@ class APIFeatures {
 
     filter() {
         const querycopy = { ...this.queryStr }
-        console.log({ querycopy})
+
         // Removing search and pagination fields from the query string
         const removeFields = ['keyword', 'limit', 'page']
         removeFields.forEach(el => delete querycopy[el]);
@@ -27,11 +29,10 @@ class APIFeatures {
         let queryStr = JSON.stringify(querycopy);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
 
-        // console.log({queryStr});
-        // console.log({beforeQuery: this.query})
+        // Cast filter values from string to number
+        const queryObj = objectMap(JSON.parse(queryStr), (item) => Number.isNaN(parseInt(item)) ? item : parseInt(item));
 
-        this.query = this.query.find(JSON.parse(queryStr));
-        // console.log({afterQuery: this.query})
+        this.query = this.query.find({ ...queryObj });
         return this;
     }
 

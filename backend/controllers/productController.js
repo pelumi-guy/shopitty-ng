@@ -53,7 +53,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     const apiFeatures = new APIFeatures(Product, req.query)
                             .search()
-                            // .filter()
+                            .filter()
 
     let products = await apiFeatures.query;
 
@@ -62,7 +62,6 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     apiFeatures.pagination(resPerPage)
     products = await apiFeatures.query.clone();
-
 
 
     res.status(200).json({
